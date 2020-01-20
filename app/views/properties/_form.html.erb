@@ -1,43 +1,44 @@
-<div class="form">
-  <%= form_with(model: @property,local: true) do |form| %>
-    <% if @property.errors.any? %>
-      <div id="error_explanation" class="center">
-        <h2><%= @property.errors.count %>件のエラーがあります。</h2>
-        <ul>
-          <% @property.errors.full_messages.each do|msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+<h1>登録</h1>
 
-    <table>
-      <div class="field">
-        <tr>
-          <td><%= form.label :name %></td>
-          <td><%= form.text_field :name %></td>
-        </tr>
-        <tr>
-          <td><%= form.label :rent %></td>
-          <td><%= form.text_field :rent %></td>
-        </tr>
-        <tr>
-          <td><%= form.label :address %></td>
-          <td><%= form.text_field :address %></td>
-        </tr>
-        <tr>
-          <td><%= form.label :age %></td>
-          <td><%= form.text_field :age %></td>
-        </tr>
-        <tr>
-          <td><%= form.label :note %></td>
-          <td><%= form.text_field :note %></td>
-        </tr>
+<div class="form">
+  <% if @property.errors.any? %>
+    <div id="error_explanation" class="center">
+      <h2><%= @property.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @property.errors.full_messages.each do|msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
-      <tr>
-        <td></td>
-        <td><%= form.submit %></td>
-      </tr>
-    </table>
+  <% end %>
+
+  <%= form_with(model: @property,local: true) do |form| %>
+    <div class="field">
+      <ul>
+        <h3>物件登録</h3>
+        <li><%= form.label :name %></li>
+        <li><%= form.text_field :name %></li>
+        <li><%= form.label :rent %></li>
+        <li><%= form.text_field :rent %></li>
+        <li><%= form.label :address %></li>
+        <li><%= form.text_field :address %></li>
+        <li><%= form.label :age %></li>
+        <li><%= form.text_field :age %></li>
+        <li><%= form.label :note %></li>
+        <li><%= form.text_area :note %></li>
+
+      <%= form.fields_for :stations do |station_form| %>
+        <h3>最寄り駅情報</h3>
+        <li><%= station_form.label :name %></li>
+        <li><%= station_form.text_field :name %></li>
+        <li><%= station_form.label :line %></li>
+        <li><%= station_form.text_field :line %></li>
+        <li><%= station_form.label :minute %></li>
+        <li><%= station_form.text_field :minute %></li>
+      <% end %>
+        <li><%= form.submit %></li>
+        <li><%= link_to "戻る",properties_path %></li>
+      </ul>
+    </div>
   <% end %>
 </div>

@@ -1,14 +1,24 @@
 <div class="center">
+  <h1>閲覧</h1>
   <div class="posted_pictures">
     <ul>
-      <li><%= @property.name %></li>
-      <li><%= @property.rent %></li>
-      <li><%= @property.address %></li>
-      <li><%= @property.age %></li>
-      <li><%= @property.note %></li>
+      <li>物件名：<%= @property.name %></li>
+      <li>賃料：<%= @property.rent %>円</li>
+      <li>住所：<%= @property.address %></li>
+      <li>築年数 <%= @property.age %>年</li>
+      <li>備考<%= @property.note %></li>
     </ul>
 
-    <%= link_to 'Edit', edit_property_path(@property) %>
-    <%= link_to 'Back', properties_path %>
+    <% @stations.each do |station| %>
+      <h3>最寄り駅</h3>
+      <ul>
+        <li>路線名 <%= station.line %></li>
+        <li>駅名 <%= station.name %></li>
+        <li>徒歩分数 <%= station.minute %>分</li>
+      </ul>
+    <% end %>
+
+    <%= link_to '編集', edit_property_path(@property) %>
+    <%= link_to '戻る', properties_path %>
   </div>
 </div>

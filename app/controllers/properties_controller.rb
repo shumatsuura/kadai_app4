@@ -3,10 +3,12 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @property.stations.build
   end
 
   def create
     @property = Property.new(property_params)
+    @station = @property.stations.build
     if @property.save
       redirect_to properties_path, notice:"物件が登録されました。"
     else
@@ -15,6 +17,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    @stations = @property.stations
   end
 
   def index
@@ -40,7 +43,7 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:name, :rent, :address, :age, :note)
+    params.require(:property).permit(:name, :rent, :address, :age, :note, stations_attributes: [:line,:name,:minute,:property_id])
   end
 
   def set_property
