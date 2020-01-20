@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     if @property.save
-      redirect_to propeties_path, notice:"物件が登録されました。"
+      redirect_to properties_path, notice:"物件が登録されました。"
     else
       render 'new'
     end
@@ -33,14 +33,14 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
-    @propety.destroy
+    @property.destroy
     redirect_to properties_path
   end
 
   private
 
   def property_params
-    params.require(:property).permit(:name,:address, :age,:note)
+    params.require(:property).permit(:name, :address, :age, :note)
   end
 
   def set_property
