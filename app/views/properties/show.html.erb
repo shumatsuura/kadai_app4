@@ -2,11 +2,12 @@
   <div class="posted_pictures">
     <ul>
       <li><%= @property.name %></li>
+      <li><%= @property.rent %></li>
       <li><%= @property.address %></li>
       <li><%= @property.age %></li>
       <li><%= @property.note %></li>
     </ul>
-    
+
     <%= link_to 'Edit', edit_property_path(@property) %>
     <%= link_to 'Back', properties_path %>
   </div>

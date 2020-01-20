@@ -8,6 +8,7 @@
   <table>
     <tr>
       <td>物件名</td>
+      <td>賃料</td>
       <td>住所</td>
       <td>築年数</td>
       <td>備考</td>
@@ -15,6 +16,7 @@
     <% @properties.each do |property| %>
         <tr>
           <td><%= property.name %></td>
+          <td><%= property.rent %></td>
           <td><%= property.address %></td>
           <td><%= property.age %></td>
           <td><%= property.note %></td>
