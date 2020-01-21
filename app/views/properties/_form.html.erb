@@ -17,22 +17,22 @@
         <li><%= form.label :name %></li>
         <li><%= form.text_field :name %></li>
         <li><%= form.label :rent %></li>
-        <li><%= form.text_field :rent %></li>
+        <li><%= form.text_field :rent %>円</li>
         <li><%= form.label :address %></li>
         <li><%= form.text_field :address %></li>
         <li><%= form.label :age %></li>
-        <li><%= form.text_field :age %></li>
+        <li><%= form.text_field :age %>年</li>
         <li><%= form.label :note %></li>
         <li><%= form.text_area :note %></li>
 
       <%= form.fields_for :stations do |station_form| %>
-        <h3>最寄り駅情報</h3>
+        <h3>最寄り駅情報<%= station_form.index + 1 %></h3>
         <li><%= station_form.label :name %></li>
         <li><%= station_form.text_field :name %></li>
         <li><%= station_form.label :line %></li>
         <li><%= station_form.text_field :line %></li>
         <li><%= station_form.label :minute %></li>
-        <li><%= station_form.text_field :minute %></li>
+        <li><%= station_form.text_field :minute %>分</li>
       <% end %>
         <li><%= form.submit %></li>
     <% end %>
