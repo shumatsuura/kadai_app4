@@ -1,5 +1,3 @@
-<h1>登録</h1>
-
 <div class="form">
   <% if @property.errors.any? %>
     <div id="error_explanation" class="center">
@@ -12,10 +10,10 @@
     </div>
   <% end %>
 
-  <%= form_with(model: @property,local: true) do |form| %>
-    <div class="field">
+  <div class="field">
+    <%= form_with(model: @property,local: true) do |form| %>
       <ul>
-        <h3>物件登録</h3>
+        <h1>物件<%= @page_title %></h1>
         <li><%= form.label :name %></li>
         <li><%= form.text_field :name %></li>
         <li><%= form.label :rent %></li>
@@ -37,8 +35,14 @@
         <li><%= station_form.text_field :minute %></li>
       <% end %>
         <li><%= form.submit %></li>
-        <li><%= link_to "戻る",properties_path %></li>
+    <% end %>
+
+      <% if controller.action_name == "edit" %>
+        <%= link_to "詳細", property_path(@property.id) %>
+      <% end %>
+
+        <%= link_to "戻る",properties_path %>
+
       </ul>
-    </div>
-  <% end %>
+  </div>
 </div>

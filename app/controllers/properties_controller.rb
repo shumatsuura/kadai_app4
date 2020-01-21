@@ -1,14 +1,14 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show,:edit,:update,:destroy]
+  before_action :set_property, only: [:show,:edit, :update, :destroy]
 
   def new
     @property = Property.new
     @property.stations.build
+    @page_title = "登録"
   end
 
   def create
     @property = Property.new(property_params)
-    @station = @property.stations.build
     if @property.save
       redirect_to properties_path, notice:"物件が登録されました。"
     else
@@ -25,6 +25,11 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    if @property.stations.last.name == "" and @property.stations.last.minute == nil and @property.stations.last.line ==""
+    else
+      @property.stations.build
+    end
+    @page_title = "編集"
   end
 
   def update
@@ -43,7 +48,7 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:name, :rent, :address, :age, :note, stations_attributes: [:line,:name,:minute,:property_id])
+    params.require(:property).permit(:name, :rent, :address, :age, :note, stations_attributes: [:id, :line,:name,:minute,:property_id])
   end
 
   def set_property
